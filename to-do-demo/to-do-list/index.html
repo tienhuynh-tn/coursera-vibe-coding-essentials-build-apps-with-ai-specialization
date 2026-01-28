@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do Demo</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel-2: rgba(255, 255, 255, 0.09);
+        --text: #e9ecff;
+        --muted: rgba(233, 236, 255, 0.7);
+        --border: rgba(233, 236, 255, 0.16);
+        --accent: #7c5cff;
+        --danger: #ff4d6d;
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+        --radius: 16px;
+        --radius-sm: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(1200px 500px at 20% 10%, rgba(124, 92, 255, 0.35), transparent 60%),
+          radial-gradient(900px 420px at 80% 30%, rgba(255, 77, 109, 0.18), transparent 60%),
+          radial-gradient(1000px 700px at 40% 100%, rgba(0, 214, 255, 0.12), transparent 55%),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 28px 14px;
+      }
+
+      .app {
+        width: min(740px, 100%);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      header {
+        padding: 22px 22px 12px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.3px;
+      }
+
+      .sub {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      .badge {
+        font-size: 12px;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 999px;
+        padding: 6px 10px;
+        height: fit-content;
+        white-space: nowrap;
+      }
+
+      .content {
+        padding: 0 22px 22px;
+      }
+
+      .composer {
+        display: flex;
+        gap: 10px;
+        padding: 14px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.14);
+      }
+
+      .composer input {
+        flex: 1;
+        border: 1px solid transparent;
+        outline: none;
+        border-radius: 12px;
+        padding: 12px 12px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        font-size: 14px;
+      }
+
+      .composer input:focus {
+        border-color: rgba(124, 92, 255, 0.7);
+        box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.16);
+      }
+
+      button {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+        user-select: none;
+      }
+
+      button:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(233, 236, 255, 0.26);
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+
+      .primary {
+        background: linear-gradient(180deg, rgba(124, 92, 255, 0.8), rgba(124, 92, 255, 0.55));
+        border-color: rgba(124, 92, 255, 0.9);
+      }
+
+      .primary:hover {
+        background: linear-gradient(180deg, rgba(124, 92, 255, 0.9), rgba(124, 92, 255, 0.62));
+      }
+
+      .danger {
+        border-color: rgba(255, 77, 109, 0.55);
+        background: rgba(255, 77, 109, 0.12);
+      }
+
+      .danger:hover {
+        background: rgba(255, 77, 109, 0.18);
+      }
+
+      .toolbar {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .filters {
+        display: inline-flex;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        padding: 6px;
+        border-radius: 999px;
+      }
+
+      .filters button {
+        border-radius: 999px;
+        padding: 8px 10px;
+        border-color: transparent;
+        background: transparent;
+      }
+
+      .filters button[aria-pressed="true"] {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(233, 236, 255, 0.22);
+      }
+
+      .counts {
+        color: var(--muted);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .list {
+        margin-top: 14px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .empty {
+        padding: 18px 14px;
+        color: var(--muted);
+        font-size: 13px;
+        background: rgba(0, 0, 0, 0.12);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 12px;
+        background: rgba(0, 0, 0, 0.12);
+        border-top: 1px solid rgba(233, 236, 255, 0.1);
+      }
+
+      li:first-child {
+        border-top: none;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .item input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent);
+      }
+
+      .text {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .title {
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .meta {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      li.done .title {
+        text-decoration: line-through;
+        opacity: 0.7;
+      }
+
+      .actions {
+        display: inline-flex;
+        gap: 8px;
+      }
+
+      .hint {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 11px;
+        padding: 2px 6px;
+        border: 1px solid rgba(233, 236, 255, 0.22);
+        border-bottom-color: rgba(233, 236, 255, 0.14);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+      }
+
+      @media (max-width: 460px) {
+        header {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app" aria-label="To-Do Demo">
+      <header>
+        <div>
+          <h1>To-Do Demo</h1>
+          <div class="sub">
+            A tiny HTML-only to-do list (with local storage). Add tasks, mark
+            them done, and clear completed.
+          </div>
+        </div>
+        <div class="badge" id="storageBadge" aria-live="polite">Loading…</div>
+      </header>
+
+      <section class="content">
+        <form class="composer" id="form">
+          <input
+            id="newTodo"
+            name="newTodo"
+            type="text"
+            autocomplete="off"
+            placeholder="Add a task…"
+            aria-label="New task"
+          />
+          <button class="primary" type="submit">Add</button>
+        </form>
+
+        <div class="toolbar" aria-label="List controls">
+          <div class="filters" role="group" aria-label="Filters">
+            <button type="button" data-filter="all" aria-pressed="true">
+              All
+            </button>
+            <button type="button" data-filter="active" aria-pressed="false">
+              Active
+            </button>
+            <button type="button" data-filter="done" aria-pressed="false">
+              Done
+            </button>
+          </div>
+          <div class="counts">
+            <span id="counts" aria-live="polite"></span>
+            <button type="button" id="clearDone" class="danger">
+              Clear done
+            </button>
+          </div>
+        </div>
+
+        <div class="list" aria-label="To-do items">
+          <div class="empty" id="emptyState" hidden>
+            No tasks yet. Add one above.
+          </div>
+          <ul id="list"></ul>
+        </div>
+
+        <div class="hint">
+          Tip: press <kbd>Enter</kbd> to add, click checkbox to toggle done.
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const STORAGE_KEY = "to-do-demo.todos.v1";
+      const $ = (sel) => document.querySelector(sel);
+
+      const form = $("#form");
+      const input = $("#newTodo");
+      const list = $("#list");
+      const emptyState = $("#emptyState");
+      const counts = $("#counts");
+      const clearDone = $("#clearDone");
+      const storageBadge = $("#storageBadge");
+
+      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+      let currentFilter = "all";
+
+      /** @type {{id:string,title:string,done:boolean,createdAt:number}[]} */
+      let todos = [];
+
+      function uid() {
+        // good-enough unique id for a demo
+        return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
+      }
+
+      function formatTime(ms) {
+        try {
+          return new Intl.DateTimeFormat(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          }).format(new Date(ms));
+        } catch {
+          return new Date(ms).toLocaleString();
+        }
+      }
+
+      function load() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) return [];
+          return parsed
+            .filter((t) => t && typeof t.id === "string" && typeof t.title === "string")
+            .map((t) => ({
+              id: t.id,
+              title: t.title,
+              done: Boolean(t.done),
+              createdAt: typeof t.createdAt === "number" ? t.createdAt : Date.now(),
+            }));
+        } catch {
+          return [];
+        }
+      }
+
+      function save() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+          storageBadge.textContent = "Saved to localStorage";
+        } catch {
+          storageBadge.textContent = "Storage unavailable";
+        }
+      }
+
+      function setFilter(next) {
+        currentFilter = next;
+        for (const btn of filterButtons) {
+          const active = btn.dataset.filter === next;
+          btn.setAttribute("aria-pressed", active ? "true" : "false");
+        }
+        render();
+      }
+
+      function visibleTodos() {
+        if (currentFilter === "active") return todos.filter((t) => !t.done);
+        if (currentFilter === "done") return todos.filter((t) => t.done);
+        return todos;
+      }
+
+      function addTodo(title) {
+        const trimmed = title.trim();
+        if (!trimmed) return;
+        todos.unshift({ id: uid(), title: trimmed, done: false, createdAt: Date.now() });
+        save();
+        render();
+      }
+
+      function toggleTodo(id) {
+        const t = todos.find((x) => x.id === id);
+        if (!t) return;
+        t.done = !t.done;
+        save();
+        render();
+      }
+
+      function deleteTodo(id) {
+        todos = todos.filter((x) => x.id !== id);
+        save();
+        render();
+      }
+
+      function clearCompleted() {
+        const before = todos.length;
+        todos = todos.filter((t) => !t.done);
+        if (todos.length !== before) save();
+        render();
+      }
+
+      function updateCounts() {
+        const total = todos.length;
+        const done = todos.filter((t) => t.done).length;
+        const active = total - done;
+        counts.textContent = `${active} active • ${done} done • ${total} total`;
+        clearDone.disabled = done === 0;
+      }
+
+      function render() {
+        const items = visibleTodos();
+
+        list.innerHTML = "";
+        emptyState.hidden = items.length !== 0;
+
+        for (const t of items) {
+          const li = document.createElement("li");
+          if (t.done) li.classList.add("done");
+
+          const left = document.createElement("div");
+          left.className = "item";
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = t.done;
+          checkbox.setAttribute("aria-label", `Mark "${t.title}" done`);
+          checkbox.addEventListener("change", () => toggleTodo(t.id));
+
+          const text = document.createElement("div");
+          text.className = "text";
+
+          const title = document.createElement("div");
+          title.className = "title";
+          title.textContent = t.title;
+
+          const meta = document.createElement("div");
+          meta.className = "meta";
+          meta.textContent = `Added ${formatTime(t.createdAt)}`;
+
+          text.appendChild(title);
+          text.appendChild(meta);
+
+          left.appendChild(checkbox);
+          left.appendChild(text);
+
+          const actions = document.createElement("div");
+          actions.className = "actions";
+
+          const del = document.createElement("button");
+          del.type = "button";
+          del.className = "danger";
+          del.textContent = "Delete";
+          del.setAttribute("aria-label", `Delete "${t.title}"`);
+          del.addEventListener("click", () => deleteTodo(t.id));
+
+          actions.appendChild(del);
+
+          li.appendChild(left);
+          li.appendChild(actions);
+          list.appendChild(li);
+        }
+
+        updateCounts();
+      }
+
+      // wire up UI
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        addTodo(input.value);
+        input.value = "";
+        input.focus();
+      });
+
+      clearDone.addEventListener("click", clearCompleted);
+      for (const btn of filterButtons) {
+        btn.addEventListener("click", () => setFilter(btn.dataset.filter));
+      }
+
+      // init
+      todos = load();
+      storageBadge.textContent = "Loaded from localStorage";
+      render();
+      input.focus();
+    </script>
+  </body>
+</html>
