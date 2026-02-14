@@ -32,6 +32,7 @@ jobs:
           cache-dependency-path: quote-generator/package-lock.json
 
       - name: Setup Pages
+        id: setup_pages
         uses: actions/configure-pages@v5
 
       - name: Build quote app
@@ -40,7 +41,7 @@ jobs:
           npm ci
           npm run build
         env:
-          PAGES_BASE_PATH: /quote
+          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/quote
 
       - name: Assemble site
         run: |
@@ -85,4 +86,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
