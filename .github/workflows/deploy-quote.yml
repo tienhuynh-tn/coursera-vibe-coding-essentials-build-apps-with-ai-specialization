@@ -1,0 +1,88 @@
+name: Deploy Pages (quote)
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "quote-generator/**"
+      - ".github/workflows/deploy-quote.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: quote-generator/package-lock.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build quote app
+        working-directory: quote-generator
+        run: |
+          npm ci
+          npm run build
+        env:
+          PAGES_BASE_PATH: /quote
+
+      - name: Assemble site
+        run: |
+          mkdir -p site/todo site/calculator site/quote
+          cp to-do-demo/to-do-list/index.html site/todo/index.html
+          cp calculator/index.html calculator/styles.css calculator/script.js site/calculator/
+          cp -R quote-generator/out/* site/quote/
+          cat > site/index.html << 'EOF'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>Coursera App Collection</title>
+              <style>
+                body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.5; }
+              </style>
+            </head>
+            <body>
+              <h1>Coursera App Collection</h1>
+              <ul>
+                <li><a href="./todo/">To-Do Demo</a></li>
+                <li><a href="./quote/">Quote Generator</a></li>
+                <li><a href="./calculator/">Calculator</a></li>
+              </ul>
+            </body>
+          </html>
+          EOF
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
