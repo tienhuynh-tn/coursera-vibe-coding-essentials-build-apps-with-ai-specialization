@@ -16,3 +16,12 @@ In this monorepo, deployment is managed by root workflows in:
 
 Published route for this app: `/todo/`
 
+## Course Context
+
+This project is part of the Coursera course:
+Vibe Coding Essentials – Build Apps with AI Specialization
+https://www.coursera.org/programs/fpt-faculty-learning-program-spring-2026-9n75a/specializations/vibe-coding
+
+## Copyright
+
+&copy; 2026 by Tien Huynh tienhuynh-tn, supported by Codex.

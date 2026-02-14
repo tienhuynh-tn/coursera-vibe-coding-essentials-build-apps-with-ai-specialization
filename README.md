@@ -49,3 +49,12 @@ Repository root page (`/`) includes quick links to all three.
 1. In GitHub repository settings, set **Pages Source** to **GitHub Actions**.
 2. Push to `main` (or run workflows manually from the Actions tab).
 
+## Course Context
+
+This project is part of the Coursera course:
+Vibe Coding Essentials – Build Apps with AI Specialization
+https://www.coursera.org/programs/fpt-faculty-learning-program-spring-2026-9n75a/specializations/vibe-coding
+
+## Copyright
+
+&copy; 2026 by Tien Huynh tienhuynh-tn, supported by Codex.
