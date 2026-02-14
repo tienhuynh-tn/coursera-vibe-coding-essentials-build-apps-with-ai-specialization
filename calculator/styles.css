@@ -1,0 +1,213 @@
+:root {
+  --bg-start: #f3f9ff;
+  --bg-end: #b7c9e8;
+  --panel-start: #ffffff;
+  --panel-end: #dce8ff;
+  --display-bg: linear-gradient(145deg, #ffffff, #dce8ff);
+  --text: #141821;
+  --muted: #4f5e7f;
+  --button-bg: linear-gradient(145deg, #ffffff, #dfe8f8);
+  --button-text: #1b253b;
+  --operator-bg: linear-gradient(145deg, #d1e2ff, #9fbbe8);
+  --operator-text: #184a9b;
+  --action-bg: linear-gradient(145deg, #ffdfe3, #eeadb8);
+  --action-text: #a32222;
+  --equals-bg: linear-gradient(145deg, #5a9dff, #2f4ed8);
+  --equals-text: #ffffff;
+  --shadow: 0 18px 45px rgba(25, 45, 98, 0.2);
+  --ring: rgba(63, 82, 255, 0.35);
+}
+
+body[data-theme="dark"] {
+  --bg-start: #0a1224;
+  --bg-end: #2b3f69;
+  --panel-start: rgba(28, 43, 75, 0.92);
+  --panel-end: rgba(8, 17, 36, 0.94);
+  --display-bg: linear-gradient(145deg, #0d1d48, #020a20);
+  --text: #f4f7ff;
+  --muted: #c4d3f4;
+  --button-bg: linear-gradient(145deg, #3f5d98, #1f315d);
+  --button-text: #edf2ff;
+  --operator-bg: linear-gradient(145deg, #3f6ab3, #243f78);
+  --operator-text: #dbe8ff;
+  --action-bg: linear-gradient(145deg, #8a4e65, #5e3343);
+  --action-text: #ffe8ee;
+  --equals-bg: linear-gradient(145deg, #6dc4ff, #3c61ee);
+  --equals-text: #f5fbff;
+  --shadow: 0 22px 55px rgba(1, 5, 15, 0.6);
+  --ring: rgba(133, 184, 255, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  background: linear-gradient(140deg, var(--bg-start), var(--bg-end));
+  color: var(--text);
+}
+
+.calculator {
+  width: min(100%, 420px);
+  background: linear-gradient(160deg, var(--panel-start), var(--panel-end));
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  padding: 1.2rem;
+}
+
+.calculator::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.24) 0%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.theme-toggle {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.icon-sun,
+.icon-moon {
+  position: absolute;
+  opacity: 0;
+}
+
+body[data-theme="light"] .icon-sun,
+body:not([data-theme]) .icon-sun,
+body[data-theme="dark"] .icon-moon {
+  position: static;
+  opacity: 1;
+}
+
+.display {
+  width: 100%;
+  margin-top: 0.95rem;
+  min-height: 4.3rem;
+  border-radius: 12px;
+  padding: 0.8rem;
+  background: var(--display-bg);
+  font-size: clamp(1.7rem, 4.8vw, 2.4rem);
+  font-weight: 600;
+  text-align: right;
+  overflow-x: auto;
+}
+
+.keys {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  height: clamp(2.9rem, 10vw, 3.4rem);
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--button-bg);
+  color: var(--button-text);
+  transition: transform 0.14s ease, filter 0.14s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.operator {
+  background: var(--operator-bg);
+  color: var(--operator-text);
+}
+
+.action {
+  background: var(--action-bg);
+  color: var(--action-text);
+}
+
+.equals {
+  grid-row: span 2;
+  height: auto;
+  background: var(--equals-bg);
+  color: var(--equals-text);
+}
+
+.zero {
+  grid-column: span 2;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0.75rem;
+  }
+
+  .calculator {
+    border-radius: 16px;
+    padding: 0.95rem;
+  }
+
+  .keys {
+    gap: 0.45rem;
+  }
+}
