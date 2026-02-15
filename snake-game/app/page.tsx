@@ -145,6 +145,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
 export default function Home() {
   const [game, dispatch] = useReducer(gameReducer, undefined, () => makeInitialGameState());
+  const turn = (direction: Direction) => dispatch({ type: "TURN", direction });
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -223,7 +224,44 @@ export default function Home() {
         })}
       </div>
 
-      <p className="text-center text-sm text-slate-300">Use arrow keys to move. Avoid walls and yourself.</p>
+      <div className="grid grid-cols-3 gap-2" style={{ width: 180 }}>
+        <div />
+        <button
+          type="button"
+          aria-label="Move up"
+          onClick={() => turn("UP")}
+          className="rounded-md border border-slate-600 bg-slate-800 px-4 py-2 text-xl font-bold text-slate-100"
+        >
+          ↑
+        </button>
+        <div />
+        <button
+          type="button"
+          aria-label="Move left"
+          onClick={() => turn("LEFT")}
+          className="rounded-md border border-slate-600 bg-slate-800 px-4 py-2 text-xl font-bold text-slate-100"
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          aria-label="Move down"
+          onClick={() => turn("DOWN")}
+          className="rounded-md border border-slate-600 bg-slate-800 px-4 py-2 text-xl font-bold text-slate-100"
+        >
+          ↓
+        </button>
+        <button
+          type="button"
+          aria-label="Move right"
+          onClick={() => turn("RIGHT")}
+          className="rounded-md border border-slate-600 bg-slate-800 px-4 py-2 text-xl font-bold text-slate-100"
+        >
+          →
+        </button>
+      </div>
+
+      <p className="text-center text-sm text-slate-300">Use arrow keys or tap arrow buttons to move.</p>
 
       {game.isGameOver && <p className="font-semibold text-rose-400">Game over. Press Restart to play again.</p>}
 
