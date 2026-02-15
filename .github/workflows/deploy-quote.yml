@@ -52,6 +52,7 @@ jobs:
           npm run build
         env:
           PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/task-checklist
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/task-checklist
 
       - name: Assemble site
         run: |
