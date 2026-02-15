@@ -29,7 +29,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: quote-generator/package-lock.json
+          cache-dependency-path: |
+            quote-generator/package-lock.json
+            task-checklist/package-lock.json
 
       - name: Setup Pages
         id: setup_pages
@@ -43,12 +45,21 @@ jobs:
         env:
           PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/quote
 
+      - name: Build task checklist app
+        working-directory: task-checklist
+        run: |
+          npm ci
+          npm run build
+        env:
+          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/task-checklist
+
       - name: Assemble site
         run: |
-          mkdir -p site/todo site/calculator site/quote
+          mkdir -p site/todo site/calculator site/quote site/task-checklist
           cp to-do-demo/to-do-list/index.html site/todo/index.html
           cp calculator/index.html calculator/styles.css calculator/script.js site/calculator/
           cp -R quote-generator/out/* site/quote/
+          cp -R task-checklist/out/* site/task-checklist/
           cat > site/index.html << 'EOF'
           <!doctype html>
           <html lang="en">
@@ -66,6 +77,7 @@ jobs:
                 <li><a href="./todo/">To-Do Demo</a></li>
                 <li><a href="./quote/">Quote Generator</a></li>
                 <li><a href="./calculator/">Calculator</a></li>
+                <li><a href="./task-checklist/">Task Checklist</a></li>
               </ul>
             </body>
           </html>

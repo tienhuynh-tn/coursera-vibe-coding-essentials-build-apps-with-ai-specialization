@@ -41,6 +41,7 @@ This app is configured for static export (`output: "export"` in `next.config.ts`
 - `.github/workflows/deploy-quote.yml`
 - `.github/workflows/deploy-todo.yml`
 - `.github/workflows/deploy-calculator.yml`
+- `.github/workflows/deploy-task-checklist.yml`
 
 Steps:
 

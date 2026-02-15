@@ -27,6 +27,7 @@ In this monorepo, deployment is managed by root workflows in:
 - `.github/workflows/deploy-calculator.yml`
 - `.github/workflows/deploy-quote.yml`
 - `.github/workflows/deploy-todo.yml`
+- `.github/workflows/deploy-task-checklist.yml`
 
 Published route for this app: `/calculator/`
 

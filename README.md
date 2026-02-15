@@ -1,10 +1,11 @@
 # Coursera Vibe Coding Essentials Projects
 
-This repository contains three sub-projects from the Coursera specialization:
+This repository contains four sub-projects from the Coursera specialization:
 
 - `to-do-demo`: To-Do app (HTML/CSS/JS in a single page)
 - `quote-generator`: Quote app (Next.js, static export)
 - `calculator`: Calculator app (HTML/CSS/JS)
+- `task-checklist`: Task checklist app (Next.js + Tailwind CSS)
 
 ## Project Structure
 
@@ -13,6 +14,7 @@ This repository contains three sub-projects from the Coursera specialization:
 |-- to-do-demo/
 |-- quote-generator/
 |-- calculator/
+|-- task-checklist/
 `-- .github/workflows/
 ```
 
@@ -28,6 +30,14 @@ npm ci
 npm run dev
 ```
 
+4. Task Checklist:
+
+```bash
+cd task-checklist
+npm ci
+npm run dev
+```
+
 ## GitHub Pages Deployment
 
 Deployments are configured at repository root:
@@ -35,14 +45,16 @@ Deployments are configured at repository root:
 - `.github/workflows/deploy-todo.yml`
 - `.github/workflows/deploy-quote.yml`
 - `.github/workflows/deploy-calculator.yml`
+- `.github/workflows/deploy-task-checklist.yml`
 
 Each workflow publishes a Pages site containing all apps at:
 
 - `/todo/`
 - `/quote/`
 - `/calculator/`
+- `/task-checklist/`
 
-Repository root page (`/`) includes quick links to all three.
+Repository root page (`/`) includes quick links to all four.
 
 ## Setup Notes
 
