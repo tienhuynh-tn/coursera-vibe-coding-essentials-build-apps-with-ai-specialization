@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            quote-generator/package-lock.json
+            task-checklist/package-lock.json
 
       - name: Setup Pages
         id: setup_pages
@@ -95,4 +98,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
