@@ -1,20 +1,20 @@
 # Coursera Vibe Coding Essentials Projects
 
-This repository contains five sub-projects from the Coursera specialization:
+This repository contains five projects from the Coursera specialization.
 
-- `to-do-demo`: To-Do app (HTML/CSS/JS in a single page)
+- `to-do-demo`: To-Do app (HTML, CSS, JavaScript)
+- `calculator`: Calculator app (HTML, CSS, JavaScript)
 - `quote-generator`: Quote app (Next.js, static export)
-- `calculator`: Calculator app (HTML/CSS/JS)
-- `task-checklist`: Task checklist app (Next.js + Tailwind CSS)
-- `snake-game`: Snake game (Next.js + Tailwind CSS)
+- `task-checklist`: Task checklist app (Next.js, static export)
+- `snake-game`: Snake game app (Next.js, static export)
 
 ## Project Structure
 
 ```text
 .
 |-- to-do-demo/
-|-- quote-generator/
 |-- calculator/
+|-- quote-generator/
 |-- task-checklist/
 |-- snake-game/
 `-- .github/workflows/
@@ -22,8 +22,18 @@ This repository contains five sub-projects from the Coursera specialization:
 
 ## Local Development
 
-1. To-Do: open `to-do-demo/to-do-list/index.html` in your browser.
-2. Calculator: open `calculator/index.html` in your browser.
+1. To-Do Demo:
+
+```bash
+open to-do-demo/to-do-list/index.html
+```
+
+2. Calculator:
+
+```bash
+open calculator/index.html
+```
+
 3. Quote Generator:
 
 ```bash
@@ -50,35 +60,34 @@ npm run dev
 
 ## GitHub Pages Deployment
 
-Deployments are configured at repository root:
+Pages deployment is handled by GitHub Actions workflows in `.github/workflows/`.
 
-- `.github/workflows/deploy-todo.yml`
-- `.github/workflows/deploy-quote.yml`
-- `.github/workflows/deploy-calculator.yml`
-- `.github/workflows/deploy-task-checklist.yml`
-- `.github/workflows/deploy-snake-game.yml`
+- `deploy-todo.yml`
+- `deploy-calculator.yml`
+- `deploy-quote.yml`
+- `deploy-task-checklist.yml`
+- `deploy-snake-game.yml`
 
-Each workflow publishes a Pages site containing all apps at:
+Each workflow assembles and publishes all apps to these routes:
 
 - `/todo/`
-- `/quote/`
 - `/calculator/`
+- `/quote/`
 - `/task-checklist/`
 - `/snake-game/`
 
-Repository root page (`/`) includes quick links to all five.
+## Pages Setup
 
-## Setup Notes
-
-1. In GitHub repository settings, set **Pages Source** to **GitHub Actions**.
-2. Push to `main` (or run workflows manually from the Actions tab).
+1. In repository settings, open **Pages**.
+2. Set **Source** to **GitHub Actions**.
+3. Push to `main` or run a deploy workflow manually from **Actions**.
 
 ## Course Context
 
 This project is part of the Coursera course:
-Vibe Coding Essentials – Build Apps with AI Specialization
+Vibe Coding Essentials - Build Apps with AI Specialization
 https://www.coursera.org/programs/fpt-faculty-learning-program-spring-2026-9n75a/specializations/vibe-coding
 
 ## Copyright
 
-&copy; 2026 by Tien Huynh tienhuynh-tn, supported by Codex.
+Copyright 2026 Tien Huynh (`tienhuynh-tn`), supported by Codex.

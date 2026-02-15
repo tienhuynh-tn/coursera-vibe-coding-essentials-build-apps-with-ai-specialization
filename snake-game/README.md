@@ -1,8 +1,15 @@
-# Snake Game (Next.js)
+# Snake Game
 
-This is a Snake game built with Next.js (App Router + TypeScript + Tailwind CSS).
+A Snake game built with Next.js (App Router + TypeScript + Tailwind CSS).
 
-## Local development
+## Features
+
+- Keyboard controls with arrow keys
+- Mobile touch controls with on-screen arrow buttons
+- Score and high score tracking
+- Responsive game board layout
+
+## Local Development
 
 ```bash
 npm ci
@@ -17,14 +24,20 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 ```
 
-The project is configured with static export (`output: "export"`), so build output is generated in `out/`.
+This app uses static export (`output: "export"`), so build output is generated in `out/`.
 
-## GitHub Pages deployment
+## GitHub Pages Deployment
 
-This app is deployed from the repository root GitHub Actions workflow:
+Primary workflow:
 
 - `../.github/workflows/deploy-snake-game.yml`
 
-On Pages, the app is available at:
+Published route:
 
 - `/snake-game/`
+
+## Course Context
+
+This project is part of the Coursera course:
+Vibe Coding Essentials - Build Apps with AI Specialization
+https://www.coursera.org/programs/fpt-faculty-learning-program-spring-2026-9n75a/specializations/vibe-coding

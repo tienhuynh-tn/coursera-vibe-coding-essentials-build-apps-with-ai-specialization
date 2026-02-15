@@ -1,63 +1,42 @@
 # Quote Generator
 
-A simple quote generator built with Next.js for learning and practice. It fetches random quotes and updates the page with a minimal UI.
-
-## Getting Started
-
-Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-- Local URL: http://localhost:3000
-- Entry file: `src/app/page.tsx`
+A simple quote generator built with Next.js (App Router + TypeScript).
 
 ## Features
 
 - Generate and display random quotes
-- Refresh quote content with a button click
-- Built as a focused learning project
+- Refresh quotes with one click
+- Responsive UI
 
-## Tech Stack
+## Local Development
 
-- Next.js (App Router, create-next-app)
-- React
-- TypeScript
-- next/font (Geist)
+```bash
+npm ci
+npm run dev
+```
 
-## Deployment
+Open [http://localhost:3000](http://localhost:3000).
 
-### GitHub Pages
+## Build
 
-This app is configured for static export (`output: "export"` in `next.config.ts`) and deployed from the monorepo root workflows:
+```bash
+npm run build
+```
 
-- `.github/workflows/deploy-quote.yml`
-- `.github/workflows/deploy-todo.yml`
-- `.github/workflows/deploy-calculator.yml`
-- `.github/workflows/deploy-task-checklist.yml`
+This app uses static export (`output: "export"`), so build output is generated in `out/`.
 
-Steps:
+## GitHub Pages Deployment
 
-1. Push the project to GitHub with a `main` branch.
-2. In your repository, open `Settings > Pages`.
-3. Set Source to `GitHub Actions`.
-4. Push to `main` (or run the workflow manually from the Actions tab).
+Primary workflow:
 
-Published route for this app: `/quote/`
+- `../.github/workflows/deploy-quote.yml`
+
+Published route:
+
+- `/quote/`
 
 ## Course Context
 
 This project is part of the Coursera course:
-Vibe Coding Essentials – Build Apps with AI Specialization
+Vibe Coding Essentials - Build Apps with AI Specialization
 https://www.coursera.org/programs/fpt-faculty-learning-program-spring-2026-9n75a/specializations/vibe-coding
-
-## Copyright
-
-&copy; 2026 by Tien Huynh tienhuynh-tn, supported by Codex.
