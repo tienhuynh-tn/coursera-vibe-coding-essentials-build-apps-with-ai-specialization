@@ -32,6 +32,7 @@ jobs:
           cache-dependency-path: |
             quote-generator/package-lock.json
             task-checklist/package-lock.json
+            snake-game/package-lock.json
 
       - name: Setup Pages
         id: setup_pages
@@ -54,14 +55,23 @@ jobs:
           PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/task-checklist
           NEXT_PUBLIC_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/task-checklist
 
+      - name: Build snake game app
+        working-directory: snake-game
+        run: |
+          npm ci
+          npm run build
+        env:
+          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}/snake-game
+
       - name: Assemble site
         run: |
-          mkdir -p site/todo site/calculator site/quote site/task-checklist
+          mkdir -p site/todo site/calculator site/quote site/task-checklist site/snake-game
           cp to-do-demo/to-do-list/index.html site/todo/index.html
           cp calculator/index.html calculator/styles.css calculator/script.js site/calculator/
           cp -R quote-generator/out/* site/quote/
           cp -R task-checklist/out/* site/task-checklist/
-          cat > site/index.html << 'EOF'
+          cp -R snake-game/out/* site/snake-game/
+          cat > site/index.html << 'HTML'
           <!doctype html>
           <html lang="en">
             <head>
@@ -79,10 +89,11 @@ jobs:
                 <li><a href="./quote/">Quote Generator</a></li>
                 <li><a href="./calculator/">Calculator</a></li>
                 <li><a href="./task-checklist/">Task Checklist</a></li>
+                <li><a href="./snake-game/">Snake Game</a></li>
               </ul>
             </body>
           </html>
-          EOF
+          HTML
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

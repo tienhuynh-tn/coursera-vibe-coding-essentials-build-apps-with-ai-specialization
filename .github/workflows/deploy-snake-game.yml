@@ -1,11 +1,11 @@
-name: Deploy Pages (quote)
+name: Deploy Pages (snake-game)
 
 on:
   push:
     branches: ["main"]
     paths:
-      - "quote-generator/**"
-      - ".github/workflows/deploy-quote.yml"
+      - "snake-game/**"
+      - ".github/workflows/deploy-snake-game.yml"
   workflow_dispatch:
 
 permissions:

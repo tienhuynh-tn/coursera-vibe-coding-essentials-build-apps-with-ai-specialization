@@ -1,11 +1,12 @@
 # Coursera Vibe Coding Essentials Projects
 
-This repository contains four sub-projects from the Coursera specialization:
+This repository contains five sub-projects from the Coursera specialization:
 
 - `to-do-demo`: To-Do app (HTML/CSS/JS in a single page)
 - `quote-generator`: Quote app (Next.js, static export)
 - `calculator`: Calculator app (HTML/CSS/JS)
 - `task-checklist`: Task checklist app (Next.js + Tailwind CSS)
+- `snake-game`: Snake game (Next.js + Tailwind CSS)
 
 ## Project Structure
 
@@ -15,6 +16,7 @@ This repository contains four sub-projects from the Coursera specialization:
 |-- quote-generator/
 |-- calculator/
 |-- task-checklist/
+|-- snake-game/
 `-- .github/workflows/
 ```
 
@@ -38,6 +40,14 @@ npm ci
 npm run dev
 ```
 
+5. Snake Game:
+
+```bash
+cd snake-game
+npm ci
+npm run dev
+```
+
 ## GitHub Pages Deployment
 
 Deployments are configured at repository root:
@@ -46,6 +56,7 @@ Deployments are configured at repository root:
 - `.github/workflows/deploy-quote.yml`
 - `.github/workflows/deploy-calculator.yml`
 - `.github/workflows/deploy-task-checklist.yml`
+- `.github/workflows/deploy-snake-game.yml`
 
 Each workflow publishes a Pages site containing all apps at:
 
@@ -53,8 +64,9 @@ Each workflow publishes a Pages site containing all apps at:
 - `/quote/`
 - `/calculator/`
 - `/task-checklist/`
+- `/snake-game/`
 
-Repository root page (`/`) includes quick links to all four.
+Repository root page (`/`) includes quick links to all five.
 
 ## Setup Notes
 
