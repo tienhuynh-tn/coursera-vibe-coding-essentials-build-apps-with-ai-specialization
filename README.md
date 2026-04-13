@@ -1,12 +1,13 @@
 # Coursera Vibe Coding Essentials Projects
 
-This repository contains five projects from the Coursera specialization.
+This repository contains six projects from the Coursera specialization.
 
 - `to-do-demo`: To-Do app (HTML, CSS, JavaScript)
 - `calculator`: Calculator app (HTML, CSS, JavaScript)
 - `quote-generator`: Quote app (Next.js, static export)
 - `task-checklist`: Task checklist app (Next.js, static export)
 - `snake-game`: Snake game app (Next.js, static export)
+- `weather-data-fetcher`: MCP server for mock package tracking and weather data (Node.js, TypeScript)
 
 ## Project Structure
 
@@ -17,6 +18,7 @@ This repository contains five projects from the Coursera specialization.
 |-- quote-generator/
 |-- task-checklist/
 |-- snake-game/
+|-- weather-data-fetcher/
 `-- .github/workflows/
 ```
 
@@ -58,6 +60,24 @@ npm ci
 npm run dev
 ```
 
+6. Weather Data Fetcher:
+
+```bash
+cd weather-data-fetcher
+npm install
+npm install -D tsx
+npx tsx server.ts
+```
+
+To inspect the MCP server:
+
+```bash
+cd weather-data-fetcher
+npx @modelcontextprotocol/inspector@latest
+```
+
+The weather project exposes stdio-based MCP tools and resources. See [weather-data-fetcher/README.md](/Users/tienhuynh-tn/Study/coursera/coursera-vibe-coding-essentials-build-apps-with-ai-specialization/weather-data-fetcher/README.md) for the project-specific commands and behavior.
+
 ## GitHub Pages Deployment
 
 Pages deployment is handled by GitHub Actions workflows in `.github/workflows/`.
@@ -75,6 +95,8 @@ Each workflow assembles and publishes all apps to these routes:
 - `/quote/`
 - `/task-checklist/`
 - `/snake-game/`
+
+`weather-data-fetcher` is a local MCP server project and is not part of the GitHub Pages deployment.
 
 ## Pages Setup
 
