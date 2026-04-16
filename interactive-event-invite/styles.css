@@ -1,0 +1,294 @@
+/* These color variables keep the party palette consistent across the page. */
+:root {
+  --bg-deep: #111827;
+  --bg-warm: #ff5f6d;
+  --bg-gold: #ffd166;
+  --panel-light: rgba(255, 248, 240, 0.9);
+  --panel-dark: rgba(17, 24, 39, 0.72);
+  --text-light: #fff8f0;
+  --text-dark: #172033;
+  --accent-coral: #ff5f6d;
+  --accent-teal: #1fb7a6;
+  --accent-yellow: #ffd166;
+  --accent-pink: #ff4fa3;
+  --border-bright: rgba(255, 255, 255, 0.3);
+  --shadow-strong: 0 20px 45px rgba(12, 18, 32, 0.35);
+}
+
+/* This makes sizing predictable, which helps layouts stay stable. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* The page background mixes a party photo with warm overlays for energy. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-light);
+  background-color: var(--bg-deep);
+  background-image:
+    linear-gradient(rgba(17, 24, 39, 0.55), rgba(17, 24, 39, 0.82)),
+    url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1400&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* This adds a colorful confetti-like layer without getting in the way. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 209, 102, 0.18) 0 12px,
+      transparent 12px 42px
+    ),
+    repeating-linear-gradient(
+      55deg,
+      rgba(31, 183, 166, 0.14) 0 10px,
+      transparent 10px 34px
+    );
+  mix-blend-mode: screen;
+}
+
+/* This swaps in the celebration GIF when the guest says they are attending. */
+body.attending-background {
+  background-image:
+    linear-gradient(rgba(17, 24, 39, 0.45), rgba(17, 24, 39, 0.65)),
+    url("https://media.giphy.com/media/l2JHPB58MjfV8W3K0/giphy.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* This swaps in a different GIF when the guest cannot attend. */
+body.not-attending-background {
+  background-image:
+    linear-gradient(rgba(17, 24, 39, 0.45), rgba(17, 24, 39, 0.65)),
+    url("https://media.giphy.com/media/JER2en0ZRiGUE/giphy.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* This centers the invitation and gives it room to breathe on every screen. */
+main {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* This is the main content shell that holds the event details and the form. */
+.invite {
+  display: grid;
+  gap: 24px;
+  align-items: stretch;
+  min-height: calc(100vh - 48px);
+}
+
+/* The header area gets a dark glass effect so bright text stays readable. */
+.invite-header {
+  padding: 28px;
+  border: 1px solid var(--border-bright);
+  border-radius: 8px;
+  background:
+    linear-gradient(160deg, rgba(255, 95, 109, 0.28), rgba(17, 24, 39, 0.75)),
+    var(--panel-dark);
+  box-shadow: var(--shadow-strong);
+}
+
+/* This small label acts like a fun event tag above the main headline. */
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background-color: rgba(255, 209, 102, 0.95);
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* The headline is bold and celebratory, but sized to stay readable on phones. */
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.05;
+}
+
+/* The date stands out as a quick visual anchor. */
+.event-date {
+  margin: 18px 0 14px;
+  color: var(--accent-yellow);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* This paragraph explains the vibe of the event in a comfortable reading width. */
+.invite-description {
+  max-width: 34rem;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* The RSVP block uses a lighter panel so the form feels easy to use. */
+.rsvp-section {
+  align-self: center;
+  padding: 28px;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 241, 229, 0.92));
+  color: var(--text-dark);
+  box-shadow: var(--shadow-strong);
+}
+
+/* This keeps the RSVP title simple and easy to spot. */
+.rsvp-section h2 {
+  margin: 0 0 20px;
+  font-size: 1.9rem;
+}
+
+/* This stacks form fields with even spacing. */
+#rsvp-form {
+  display: grid;
+  gap: 18px;
+}
+
+/* Each form group keeps its label and control together. */
+.form-group {
+  display: grid;
+  gap: 8px;
+}
+
+/* Labels are slightly bold so guests can scan the form quickly. */
+label {
+  font-weight: 700;
+}
+
+/* Inputs and dropdowns are large enough for touch screens and desktops. */
+input,
+select,
+button {
+  width: 100%;
+  font: inherit;
+}
+
+/* Form controls use clear contrast, roomy padding, and a stable height. */
+input,
+select {
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 2px solid rgba(23, 32, 51, 0.12);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--text-dark);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+/* Focus styles help keyboard users and make the page feel polished. */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 0 4px rgba(31, 183, 166, 0.2);
+  transform: translateY(-1px);
+}
+
+/* The button uses bright colors to feel festive and clickable. */
+button {
+  min-height: 56px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, var(--accent-coral), var(--accent-pink));
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 14px 24px rgba(255, 79, 163, 0.28);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+/* Hover and focus states give the button a little motion and feedback. */
+button:hover,
+button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 28px rgba(255, 79, 163, 0.34);
+  filter: saturate(1.08);
+}
+
+/* A gentle pressed state keeps the interaction feeling responsive. */
+button:active {
+  transform: translateY(0);
+}
+
+/* This message area appears only after JavaScript adds text to it. */
+.confirmation-message {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-left: 6px solid var(--accent-teal);
+  border-radius: 8px;
+  background-color: rgba(31, 183, 166, 0.12);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* When the message box is empty, it stays hidden from view. */
+.confirmation-message:empty {
+  display: none;
+}
+
+/* Tablet and desktop screens get a side-by-side layout for more drama. */
+@media (min-width: 820px) {
+  .invite {
+    grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.9fr);
+    gap: 28px;
+  }
+
+  .invite-header,
+  .rsvp-section {
+    padding: 40px;
+  }
+}
+
+/* Smaller screens get tighter spacing and a slightly smaller headline. */
+@media (max-width: 819px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Very small phones need extra padding control so nothing feels cramped. */
+@media (max-width: 540px) {
+  main {
+    padding: 16px;
+  }
+
+  .invite {
+    min-height: auto;
+    gap: 18px;
+  }
+
+  .invite-header,
+  .rsvp-section {
+    padding: 22px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  .invite-description {
+    font-size: 1rem;
+  }
+}

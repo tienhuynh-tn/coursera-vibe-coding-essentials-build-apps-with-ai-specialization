@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drum Kit</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Main container used to center the drum kit on the page -->
+    <main class="app">
+      <section class="drum-kit" aria-label="Drum kit controls">
+        <!-- Each button represents one drum sound and points to a matching audio element -->
+        <button class="drum-button" type="button" data-sound="clap">Clap</button>
+        <button class="drum-button" type="button" data-sound="hihat">Hi-Hat</button>
+        <button class="drum-button" type="button" data-sound="kick">Kick</button>
+        <button class="drum-button" type="button" data-sound="openhat">Open Hat</button>
+        <button class="drum-button" type="button" data-sound="boom">Boom</button>
+        <button class="drum-button" type="button" data-sound="ride">Ride</button>
+        <button class="drum-button" type="button" data-sound="snare">Snare</button>
+        <button class="drum-button" type="button" data-sound="tom">Tom</button>
+        <button class="drum-button" type="button" data-sound="tink">Tink</button>
+      </section>
+    </main>
+
+    <!-- Preload each sound from the sounds folder so playback starts quickly on click -->
+    <audio id="clap-audio" preload="auto">
+      <source src="sounds/clap.wav" type="audio/wav" />
+    </audio>
+    <audio id="hihat-audio" preload="auto">
+      <source src="sounds/hihat.wav" type="audio/wav" />
+    </audio>
+    <audio id="kick-audio" preload="auto">
+      <source src="sounds/kick.wav" type="audio/wav" />
+    </audio>
+    <audio id="openhat-audio" preload="auto">
+      <source src="sounds/openhat.wav" type="audio/wav" />
+    </audio>
+    <audio id="boom-audio" preload="auto">
+      <source src="sounds/boom.wav" type="audio/wav" />
+    </audio>
+    <audio id="ride-audio" preload="auto">
+      <source src="sounds/ride.wav" type="audio/wav" />
+    </audio>
+    <audio id="snare-audio" preload="auto">
+      <source src="sounds/snare.wav" type="audio/wav" />
+    </audio>
+    <audio id="tom-audio" preload="auto">
+      <source src="sounds/tom.wav" type="audio/wav" />
+    </audio>
+    <audio id="tink-audio" preload="auto">
+      <source src="sounds/tink.wav" type="audio/wav" />
+    </audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>

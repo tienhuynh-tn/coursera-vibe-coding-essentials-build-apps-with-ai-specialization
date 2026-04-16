@@ -1,11 +1,21 @@
-name: Deploy Pages (quote)
+name: Deploy GitHub Pages
 
 on:
   push:
     branches: ["main"]
     paths:
+      - "README.md"
+      - "to-do-demo/**"
+      - "calculator/**"
       - "quote-generator/**"
-      - ".github/workflows/deploy-quote.yml"
+      - "task-checklist/**"
+      - "snake-game/**"
+      - "cake-raffle-app/**"
+      - "drum-kit-app/**"
+      - "face-bomp/**"
+      - "interactive-event-invite/**"
+      - "smart-home-mobile-interface/**"
+      - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -65,12 +75,32 @@ jobs:
 
       - name: Assemble site
         run: |
-          mkdir -p site/todo site/calculator site/quote site/task-checklist site/snake-game
+          mkdir -p \
+            site/todo \
+            site/calculator \
+            site/quote \
+            site/task-checklist \
+            site/snake-game \
+            site/cake-raffle \
+            site/drum-kit \
+            site/face-bomp \
+            site/event-invite \
+            site/smart-home
+
           cp to-do-demo/to-do-list/index.html site/todo/index.html
           cp calculator/index.html calculator/styles.css calculator/script.js site/calculator/
           cp -R quote-generator/out/* site/quote/
           cp -R task-checklist/out/* site/task-checklist/
           cp -R snake-game/out/* site/snake-game/
+          cp cake-raffle-app/index.html cake-raffle-app/style.css cake-raffle-app/script.js site/cake-raffle/
+          cp drum-kit-app/index.html drum-kit-app/styles.css drum-kit-app/script.js site/drum-kit/
+          cp -R drum-kit-app/sounds site/drum-kit/
+          cp face-bomp/index.html face-bomp/styles.css face-bomp/script.js face-bomp/photo.png site/face-bomp/
+          cp -R face-bomp/sounds site/face-bomp/
+          cp interactive-event-invite/index.html interactive-event-invite/styles.css interactive-event-invite/script.js site/event-invite/
+          cp smart-home-mobile-interface/index.html smart-home-mobile-interface/styles.css smart-home-mobile-interface/icons.css smart-home-mobile-interface/script.js site/smart-home/
+          cp -R smart-home-mobile-interface/assets site/smart-home/
+
           cat > site/index.html << 'HTML'
           <!doctype html>
           <html lang="en">
@@ -79,17 +109,41 @@ jobs:
               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
               <title>Coursera App Collection</title>
               <style>
-                body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.5; }
+                body {
+                  font-family: Arial, sans-serif;
+                  margin: 2rem auto;
+                  max-width: 960px;
+                  padding: 0 1rem 3rem;
+                  line-height: 1.5;
+                }
+
+                h1 {
+                  margin-bottom: 0.5rem;
+                }
+
+                ul {
+                  padding-left: 1.25rem;
+                }
+
+                li + li {
+                  margin-top: 0.35rem;
+                }
               </style>
             </head>
             <body>
               <h1>Coursera App Collection</h1>
+              <p>Static app index for this repository's GitHub Pages deployment.</p>
               <ul>
                 <li><a href="./todo/">To-Do Demo</a></li>
-                <li><a href="./quote/">Quote Generator</a></li>
                 <li><a href="./calculator/">Calculator</a></li>
+                <li><a href="./quote/">Quote Generator</a></li>
                 <li><a href="./task-checklist/">Task Checklist</a></li>
                 <li><a href="./snake-game/">Snake Game</a></li>
+                <li><a href="./cake-raffle/">Cake Raffle</a></li>
+                <li><a href="./drum-kit/">Drum Kit</a></li>
+                <li><a href="./face-bomp/">FaceBomp</a></li>
+                <li><a href="./event-invite/">Interactive Event Invite</a></li>
+                <li><a href="./smart-home/">Smart Home Mobile Interface</a></li>
               </ul>
             </body>
           </html>

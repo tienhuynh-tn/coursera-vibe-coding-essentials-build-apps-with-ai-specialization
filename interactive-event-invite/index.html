@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GIF Gala RSVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="invite">
+        <header class="invite-header">
+          <p class="eyebrow">Epic Costume Party</p>
+          <h1>You're Invited to the GIF Gala: Where Memes Come to Life!</h1>
+          <p class="event-date">7/21/23</p>
+          <p class="invite-description">
+            Step into a night of looping laughs, iconic reactions, and meme-worthy
+            looks as guests arrive dressed as their favorite GIFs and internet
+            legends. Come ready to celebrate, strike a pose, and become part of the
+            timeline.
+          </p>
+        </header>
+
+        <section class="rsvp-section" aria-labelledby="rsvp-heading">
+          <h2 id="rsvp-heading">RSVP</h2>
+          <form id="rsvp-form">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="attendance">Will you attend?</label>
+              <select id="attendance" name="attendance" required>
+                <option value="">Select an option</option>
+                <option value="yes">Yes, I'll be there</option>
+                <option value="no">No, I can't make it</option>
+              </select>
+            </div>
+
+            <button type="submit">Submit RSVP</button>
+          </form>
+
+          <div
+            id="confirmation-message"
+            class="confirmation-message"
+            aria-live="polite"
+          ></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

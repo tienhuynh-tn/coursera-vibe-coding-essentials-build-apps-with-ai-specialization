@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FaceBomp</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>FaceBomp</h1>
+    <div class="game-controls">
+      <button id="start-button" type="button">Start Game</button>
+      <p class="score-display">Score: <span id="score">0</span></p>
+      <p class="timer-display">Time Left: <span id="time-left">30</span>s</p>
+    </div>
+  </header>
+
+  <main>
+    <p id="final-message" aria-live="polite"></p>
+
+    <section class="game-board" aria-label="FaceBomp game board">
+      <div class="hole" id="hole-1">
+        <img src="photo.png" alt="Face target">
+      </div>
+      <div class="hole" id="hole-2">
+        <img src="photo.png" alt="Face target">
+      </div>
+      <div class="hole" id="hole-3">
+        <img src="photo.png" alt="Face target">
+      </div>
+      <div class="hole" id="hole-4">
+        <img src="photo.png" alt="Face target">
+      </div>
+      <div class="hole" id="hole-5">
+        <img src="photo.png" alt="Face target">
+      </div>
+      <div class="hole" id="hole-6">
+        <img src="photo.png" alt="Face target">
+      </div>
+    </section>
+  </main>
+
+  <audio id="bomp-sound" preload="auto">
+    <source src="sounds/bomp.wav" type="audio/wav">
+  </audio>
+
+  <audio id="start-sound" preload="auto">
+    <source src="sounds/bomp.wav" type="audio/wav">
+  </audio>
+
+  <audio id="game-end-sound" preload="auto">
+    <source src="sounds/game-end.wav" type="audio/wav">
+  </audio>
+
+  <audio id="game-end-high-sound" preload="auto">
+    <source src="sounds/game-end_high.wav" type="audio/wav">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

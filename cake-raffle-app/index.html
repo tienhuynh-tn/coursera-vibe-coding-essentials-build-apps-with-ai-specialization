@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cake Raffle App</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1 class="header-title">
+        <span class="material-icons cake-icon" aria-hidden="true">cake</span>
+        <span>Cake Raffle</span>
+      </h1>
+      <p>Add names, then draw one lucky winner.</p>
+    </header>
+
+    <main class="app-layout">
+      <section class="panel">
+        <h2>Entry Form</h2>
+        <form id="entry-form" class="entry-form">
+          <label for="name-input">Participant Name</label>
+          <div class="input-row">
+            <input
+              id="name-input"
+              type="text"
+              placeholder="Enter a name"
+              autocomplete="off"
+            />
+            <button type="submit" class="add-button">Add</button>
+          </div>
+        </form>
+        <p id="form-message" class="form-message">Enter a name to join the raffle.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Participants List</h2>
+        <ul id="participants-list" class="participants-list"></ul>
+        <p id="empty-state" class="empty-state">No participants yet.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Winner Display</h2>
+        <div id="winner-display" class="winner-display">
+          <span class="material-icons winner-icon" aria-hidden="true">cake</span>
+          <span>The winner will appear here after the draw.</span>
+        </div>
+      </section>
+
+      <section class="panel draw-section">
+        <h2>Draw</h2>
+        <div class="draw-actions">
+          <button id="draw-button" class="draw-button" type="button" disabled>
+            Draw Winner
+          </button>
+          <button id="reset-button" class="reset-button" type="button">
+            Reset
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

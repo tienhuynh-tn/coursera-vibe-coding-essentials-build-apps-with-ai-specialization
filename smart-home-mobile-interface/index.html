@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlowHaus</title>
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <p class="app-subtitle">GlowHaus</p>
+      <h1>Smart Home Control</h1>
+    </header>
+
+    <main class="control-sections">
+      <section class="control-card" id="lighting-section" aria-labelledby="lighting-title">
+        <div class="section-heading">
+          <h2 id="lighting-title">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <span>Lighting</span>
+          </h2>
+          <p>Turn the main lighting scene on or off.</p>
+        </div>
+        <label class="switch-control" for="lighting-toggle" aria-label="Toggle lighting">
+          <span class="switch-copy">
+            <i class="fa-solid fa-power-off" aria-hidden="true"></i>
+            <span>Main Lights</span>
+          </span>
+          <input type="checkbox" id="lighting-toggle" checked>
+          <span class="switch-slider" aria-hidden="true"></span>
+        </label>
+      </section>
+
+      <section class="control-card" id="temperature-section" aria-labelledby="temperature-title">
+        <div class="section-heading">
+          <h2 id="temperature-title">
+            <i class="fa-solid fa-thermometer-half" aria-hidden="true"></i>
+            <span>Temperature</span>
+          </h2>
+          <p>Adjust the room to your preferred temperature.</p>
+        </div>
+        <div class="temperature-display" aria-live="polite" aria-atomic="true">
+          <span class="temperature-value" id="temperature-value">78</span>
+          <span class="temperature-unit">&deg;F</span>
+        </div>
+        <div class="button-group temperature-buttons" role="group" aria-label="Temperature controls">
+          <button type="button" id="temperature-decrease" aria-label="Decrease temperature">
+            <span class="temp-button-symbol" aria-hidden="true">-</span>
+            <span>Cooler</span>
+          </button>
+          <button type="button" id="temperature-increase" aria-label="Increase temperature">
+            <span class="temp-button-symbol" aria-hidden="true">+</span>
+            <span>Warmer</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="control-card" id="music-section" aria-labelledby="music-title">
+        <div class="section-heading">
+          <h2 id="music-title">
+            <i class="fa-solid fa-music" aria-hidden="true"></i>
+            <span>Music</span>
+          </h2>
+          <p>Queue up something ridiculous for the room.</p>
+        </div>
+        <div class="song-display" aria-live="polite" aria-atomic="true">
+          <span class="song-label">Now Playing</span>
+          <p class="song-title" id="song-title">Press Play for a surprise track.</p>
+        </div>
+        <div class="button-group music-buttons" role="group" aria-label="Music controls">
+          <button type="button" id="music-play-toggle">
+            <span class="music-button-symbol" id="music-play-symbol" aria-hidden="true">&#9654;</span>
+            <span id="music-play-label">Play</span>
+          </button>
+          <button type="button" id="music-stop">
+            <span class="music-button-symbol" aria-hidden="true">&#9632;</span>
+            <span>Stop</span>
+          </button>
+          <button type="button" id="music-next">
+            <span class="music-button-symbol" aria-hidden="true">&#9193;</span>
+            <span>Next</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

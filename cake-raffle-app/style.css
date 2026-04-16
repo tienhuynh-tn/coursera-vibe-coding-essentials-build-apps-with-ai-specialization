@@ -1,0 +1,255 @@
+/* Style the full page with a bright background and readable default text. */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff4f8;
+  color: #333333;
+}
+
+/* Style the header with the requested pink tone and centered text. */
+.page-header {
+  background-color: #ff4081;
+  color: #ffffff;
+  text-align: center;
+  padding: 32px 16px;
+}
+
+/* Remove extra space around the main heading. */
+.page-header h1 {
+  margin: 0 0 8px;
+}
+
+/* Keep the icon and title text aligned on one row. */
+.header-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Make the cake icon in the header easy to notice. */
+.cake-icon {
+  font-size: 2rem;
+}
+
+/* Keep the subtitle tidy and easy to read. */
+.page-header p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Arrange the main sections in a responsive layout with spacing. */
+.app-layout {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: grid;
+  gap: 20px;
+}
+
+/* Give each section a clean panel look. */
+.panel {
+  background-color: #ffffff;
+  border: 2px solid #ffd1e1;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(255, 64, 129, 0.08);
+}
+
+/* Keep section headings aligned with the rest of the content. */
+.panel h2 {
+  margin-top: 0;
+  color: #d81b60;
+}
+
+/* Stack the form controls with comfortable spacing. */
+.entry-form {
+  display: grid;
+  gap: 12px;
+}
+
+/* Place the input and button on one row when there is room. */
+.input-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Style the text input for clarity and comfort. */
+#name-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px;
+  border: 2px solid #ff80ab;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Add a visible focus style to the input. */
+#name-input:focus {
+  outline: none;
+  border-color: #7c4dff;
+  box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.18);
+}
+
+/* Style the add button with a complementary purple color. */
+.add-button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #7c4dff;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Darken the add button on hover for clear feedback. */
+.add-button:hover {
+  background-color: #651fff;
+  transform: translateY(-1px);
+}
+
+/* Slightly shrink the add button while it is being clicked. */
+.add-button:active {
+  background-color: #512da8;
+  transform: translateY(0);
+}
+
+/* Show short guidance and validation messages under the form. */
+.form-message {
+  margin-bottom: 0;
+  color: #6a1b9a;
+  font-weight: 600;
+}
+
+/* Remove default list spacing so the custom layout looks cleaner. */
+.participants-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+/* Style each participant as a simple highlighted row. */
+.participants-list li {
+  background-color: #fff0f6;
+  border: 1px solid #ffb3d1;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* Keep the empty-state text subtle until names are added. */
+.empty-state {
+  margin-bottom: 0;
+  color: #757575;
+}
+
+/* Highlight the winner area so the result stands out. */
+.winner-display {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  background-color: #fff8e1;
+  border: 2px dashed #ffca28;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #e65100;
+}
+
+/* Give the winner cake icon a size that matches the result text. */
+.winner-icon {
+  font-size: 1.5rem;
+}
+
+/* Center the draw button section content. */
+.draw-section {
+  text-align: center;
+}
+
+/* Place the draw and reset buttons on one row with spacing. */
+.draw-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Style the draw button with a bright green color to signal action. */
+.draw-button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  background-color: #00c853;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Make the draw button slightly darker on hover. */
+.draw-button:hover:enabled {
+  background-color: #00b248;
+  transform: translateY(-1px);
+}
+
+/* Give clicked feedback for the draw button. */
+.draw-button:active:enabled {
+  background-color: #009624;
+  transform: translateY(0);
+}
+
+/* Tone down the draw button when it cannot be used yet. */
+.draw-button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+/* Style the reset button with the requested blue color. */
+.reset-button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Darken the reset button on hover with the requested hover color. */
+.reset-button:hover {
+  background-color: #1367c0;
+  transform: translateY(-1px);
+}
+
+/* Give clicked feedback for the reset button. */
+.reset-button:active {
+  background-color: #0f56a0;
+  transform: translateY(0);
+}
+
+/* Adjust the layout for smaller screens. */
+@media (max-width: 600px) {
+  .page-header {
+    padding: 24px 16px;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .add-button,
+  .draw-button,
+  .reset-button,
+  #name-input {
+    width: 100%;
+  }
+}

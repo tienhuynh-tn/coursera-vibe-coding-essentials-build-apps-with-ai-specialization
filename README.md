@@ -1,42 +1,62 @@
 # Coursera Vibe Coding Essentials Projects
 
-This repository contains six projects from the Coursera specialization.
+This repository collects the hands-on projects built for the Coursera specialization "Vibe Coding Essentials - Build Apps with AI". It includes browser apps, static Next.js exports, and one local MCP server project.
 
-- `to-do-demo`: To-Do app (HTML, CSS, JavaScript)
-- `calculator`: Calculator app (HTML, CSS, JavaScript)
-- `quote-generator`: Quote app (Next.js, static export)
-- `task-checklist`: Task checklist app (Next.js, static export)
-- `snake-game`: Snake game app (Next.js, static export)
-- `weather-data-fetcher`: MCP server for mock package tracking and weather data (Node.js, TypeScript)
+## Projects
 
-## Project Structure
+### Static browser apps
+
+- `to-do-demo`: To-Do app
+- `calculator`: Calculator app
+- `cake-raffle-app`: Cake raffle picker
+- `drum-kit-app`: Drum pad with keyboard-triggered sounds
+- `face-bomp`: Reflex game with image and sound effects
+- `interactive-event-invite`: RSVP event invite page
+- `smart-home-mobile-interface`: Smart home mobile control mockup
+
+### Static Next.js apps
+
+- `quote-generator`: Quote generator
+- `task-checklist`: Task checklist app
+- `snake-game`: Snake game
+
+### Local Node.js project
+
+- `weather-data-fetcher`: MCP server for mock package tracking and weather data
+
+## Repository Layout
 
 ```text
 .
-|-- to-do-demo/
+|-- .github/workflows/deploy-pages.yml
 |-- calculator/
+|-- cake-raffle-app/
+|-- drum-kit-app/
+|-- face-bomp/
+|-- interactive-event-invite/
 |-- quote-generator/
-|-- task-checklist/
+|-- smart-home-mobile-interface/
 |-- snake-game/
-|-- weather-data-fetcher/
-`-- .github/workflows/
+|-- task-checklist/
+|-- to-do-demo/
+`-- weather-data-fetcher/
 ```
 
 ## Local Development
 
-1. To-Do Demo:
+### Open static apps directly
 
 ```bash
 open to-do-demo/to-do-list/index.html
-```
-
-2. Calculator:
-
-```bash
 open calculator/index.html
+open cake-raffle-app/index.html
+open drum-kit-app/index.html
+open face-bomp/index.html
+open interactive-event-invite/index.html
+open smart-home-mobile-interface/index.html
 ```
 
-3. Quote Generator:
+### Run Next.js apps
 
 ```bash
 cd quote-generator
@@ -44,15 +64,11 @@ npm ci
 npm run dev
 ```
 
-4. Task Checklist:
-
 ```bash
 cd task-checklist
 npm ci
 npm run dev
 ```
-
-5. Snake Game:
 
 ```bash
 cd snake-game
@@ -60,7 +76,7 @@ npm ci
 npm run dev
 ```
 
-6. Weather Data Fetcher:
+### Run the MCP server project
 
 ```bash
 cd weather-data-fetcher
@@ -76,39 +92,45 @@ cd weather-data-fetcher
 npx @modelcontextprotocol/inspector@latest
 ```
 
-The weather project exposes stdio-based MCP tools and resources. See [weather-data-fetcher/README.md](/Users/tienhuynh-tn/Study/coursera/coursera-vibe-coding-essentials-build-apps-with-ai-specialization/weather-data-fetcher/README.md) for the project-specific commands and behavior.
+See [weather-data-fetcher/README.md](/Users/tienhuynh-tn/Study/coursera/coursera-vibe-coding-essentials-build-apps-with-ai-specialization/weather-data-fetcher/README.md) for project-specific details.
 
 ## GitHub Pages Deployment
 
-Pages deployment is handled by GitHub Actions workflows in `.github/workflows/`.
+GitHub Pages is published by a single workflow: `.github/workflows/deploy-pages.yml`.
 
-- `deploy-todo.yml`
-- `deploy-calculator.yml`
-- `deploy-quote.yml`
-- `deploy-task-checklist.yml`
-- `deploy-snake-game.yml`
+The workflow:
 
-Each workflow assembles and publishes all apps to these routes:
+- builds the three Next.js apps as static exports
+- copies each static app into the Pages artifact
+- publishes one combined site from the `main` branch through GitHub Actions
+
+Published routes:
 
 - `/todo/`
 - `/calculator/`
 - `/quote/`
 - `/task-checklist/`
 - `/snake-game/`
+- `/cake-raffle/`
+- `/drum-kit/`
+- `/face-bomp/`
+- `/event-invite/`
+- `/smart-home/`
 
-`weather-data-fetcher` is a local MCP server project and is not part of the GitHub Pages deployment.
+`weather-data-fetcher` is intentionally excluded from GitHub Pages because it runs as a local MCP server, not a static site.
 
 ## Pages Setup
 
 1. In repository settings, open **Pages**.
 2. Set **Source** to **GitHub Actions**.
-3. Push to `main` or run a deploy workflow manually from **Actions**.
+3. Push to `main` or run **Deploy GitHub Pages** manually from the **Actions** tab.
 
 ## Course Context
 
-This project is part of the Coursera course:
+This repository is part of the Coursera course:
 Vibe Coding Essentials - Build Apps with AI Specialization
-https://www.coursera.org/programs/fpt-faculty-learning-program-spring-2026-9n75a/specializations/vibe-coding
+
+[Course link](https://www.coursera.org/programs/fpt-faculty-learning-program-spring-2026-9n75a/specializations/vibe-coding)
 
 ## Copyright
 
