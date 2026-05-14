@@ -1,6 +1,6 @@
 # Coursera Vibe Coding Essentials Projects
 
-This repository collects the hands-on projects built for the Coursera specialization "Vibe Coding Essentials - Build Apps with AI". It includes browser apps, static Next.js exports, and one local MCP server project.
+This repository collects the hands-on projects built for the Coursera specialization "Vibe Coding Essentials - Build Apps with AI". It includes browser apps, static Next.js exports, a Chrome extension, and one local MCP server project.
 
 ## Projects
 
@@ -20,6 +20,10 @@ This repository collects the hands-on projects built for the Coursera specializa
 - `task-checklist`: Task checklist app
 - `snake-game`: Snake game
 
+### Chrome extension
+
+- `snap-stash-chrome-extension`: Chrome extension for saving the current tab into categorized lists
+
 ### Local Node.js project
 
 - `weather-data-fetcher`: MCP server for mock package tracking and weather data
@@ -37,6 +41,7 @@ This repository collects the hands-on projects built for the Coursera specializa
 |-- quote-generator/
 |-- smart-home-mobile-interface/
 |-- snake-game/
+|-- snap-stash-chrome-extension/
 |-- task-checklist/
 |-- to-do-demo/
 `-- weather-data-fetcher/
@@ -94,6 +99,15 @@ npx @modelcontextprotocol/inspector@latest
 
 See [weather-data-fetcher/README.md](/Users/tienhuynh-tn/Study/coursera/coursera-vibe-coding-essentials-build-apps-with-ai-specialization/weather-data-fetcher/README.md) for project-specific details.
 
+### Load the Chrome extension
+
+1. Open `chrome://extensions`.
+2. Turn on **Developer mode**.
+3. Click **Load unpacked**.
+4. Select `snap-stash-chrome-extension`.
+
+See [snap-stash-chrome-extension/README.md](/Users/tienhuynh-tn/Study/coursera/coursera-vibe-coding-essentials-build-apps-with-ai-specialization/snap-stash-chrome-extension/README.md) for extension-specific details.
+
 ## GitHub Pages Deployment
 
 GitHub Pages is published by a single workflow: `.github/workflows/deploy-pages.yml`.
@@ -117,7 +131,7 @@ Published routes:
 - `/event-invite/`
 - `/smart-home/`
 
-`weather-data-fetcher` is intentionally excluded from GitHub Pages because it runs as a local MCP server, not a static site.
+`snap-stash-chrome-extension` and `weather-data-fetcher` are intentionally excluded from GitHub Pages. The extension must be loaded through Chrome developer mode, and the MCP server runs locally.
 
 ## Pages Setup
 
